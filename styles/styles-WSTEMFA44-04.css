@@ -1,0 +1,152 @@
+/* Généralités et resets */
+*, *::before, *::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+	background-color: #f7f9fb;
+	color: #2d3436;
+	line-height: 1.6;
+	padding-bottom: 50px;
+	font-family: 'Inter';
+}
+
+header {
+	text-align: center;
+	background-color: #1f2937;
+	color: white;
+	padding: 30px;
+	margin-bottom: 40px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+	font-size: 2.75rem;
+	letter-spacing: 1px;
+	font-weight: 700;
+}
+
+main {
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 0 20px;
+}
+
+.form {
+	background-color: #ffffff;
+	padding: 30px;
+	border-radius: 12px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	margin-bottom: 50px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 20px;
+	align-items: start;
+}
+
+.form h2 {
+	grid-column: span 2;
+	border-bottom: 2px solid #1f2937;
+	padding-bottom: 12px;
+	margin-bottom: 24px;
+	font-size: 1.6rem;
+	color: #1f2937;
+	font-weight: 600;
+}
+
+label {
+	font-weight: 500;
+	margin-bottom: 8px;
+	display: block;
+	color: #555;
+}
+
+input[type="text"],
+input[type="date"] {
+	width: 100%;
+	padding: 12px;
+	border: 2px solid #dfe4ea;
+	border-radius: 8px;
+	transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus {
+	border-color: #a4a7ab;
+	outline: none;
+}
+
+button[type="submit"] {
+	margin-top: 12px;
+	margin-bottom: 24px;
+	grid-column: span 2;
+	padding: 14px;
+	border: none;
+	border-radius: 8px;
+	background-color: #10a37f;
+	color: white;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button[type="submit"]:hover {
+	background-color: #008c6a;
+}
+
+/* Tableau */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #ececf1;
+}
+
+table th, table td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid #f0f4f8;
+}
+
+table th {
+    background-color: #ffffff;
+    color: white;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: #fafbfc;
+}
+
+table tbody tr:hover {
+    background-color: #e4f2fe;
+    transform: scale(1.02);
+    transition: transform 0.2s ease, background-color 0.3s ease;
+    cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .form {
+        grid-template-columns: 1fr;
+    }
+
+    .form h2, button[type="submit"] {
+        grid-column: span 1;
+    }
+
+    header h1 {
+        font-size: 2.2rem;
+    }
+
+    table th, table td {
+        padding: 12px;
+    }
+}
