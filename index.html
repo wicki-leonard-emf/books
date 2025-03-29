@@ -1,56 +1,105 @@
 <!DOCTYPE html>
 <html lang="fr">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Activité 14 - Gestion CRUD complète</title>
-		
-		
-		<!-- Favicon -->
-		<link rel="icon" href="#" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Activité 14 - Gestion CRUD complète</title>
 
-		<!-- Style de la page -->
-		<link rel="stylesheet" href="styles/styles.css" />
+    <link
+      href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css"
+    />
+    <!-- Favicon -->
+    <link rel="icon" href="#" />
 
-		<!-- Chargement du script principal -->
-		<script src="scripts/app.js" type="module" defer></script>
-	</head>
-	<body>
-		<!-- Titre de la page -->
-		<header>
-			<h1>Bibliothèque</h1>
-		</header>
+    <!-- Style de la page -->
+    <link rel="stylesheet" href="styles/styles.css" />
 
-		<!-- Contenu de la page -->
-		<main>
-			<!-- Formulaire d'ajout -->
-			<div id="formAdd" class="form">
-				<h2>Ajouter un livre</h2>
-				<label for="titre">Titre</label>
-				<input type="text" id="titre" name="titre" required />
-				<label for="auteur">Auteur</label>
-				<input type="text" id="auteur" name="auteur" required />
-				<label for="date">Année</label>
-				<input type="date" id="date" name="date" required />
-				<label for="genre">Genre</label>
-				<input type="text" id="genre" name="genre" required />
-				<button id="submit-btn" type="submit">Ajouter</button>
-			</div>
+    <!-- Chargement du script principal -->
+    <script src="scripts/app.js" type="module" defer></script>
+  </head>
+  <body>
+    <!-- Titre de la page -->
+    <header>
+      <h1>Bibliothèque</h1>
+    </header>
 
-			<!-- Liste des livres -->
-			<h2>Liste des livres</h2>
-			<table id="books">
-				<thead>
-					<tr>
-						<th>Titre</th>
-						<th>Auteur</th>
-						<th>date</th>
-						<th>Genre</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody></tbody>
-			</table>
-		</main>
-	</body>
+    <!-- Contenu de la page -->
+    <main>
+      <!-- Popup d'alerte personnalisée -->
+      <div id="alert-modal" class="alert-modal">
+        <div class="alert-modal-content">
+          <h3 id="alert-message">Une erreur est survenue.</h3>
+          <code id="alert-error-message"></code>
+          <button class="confirm-btn" id="alert-ok-btn">Compris !</button>
+        </div>
+      </div>
+
+      <!-- Popup de modification 	-->
+      <div class="edit-modal" id="edit-modal">
+        <div class="edit-modal-content">
+          <h3>Modifier le livre</h3>
+          <label for="edit-titre">Titre</label>
+          <input type="text" id="edit-titre" name="edit-titre" required />
+          <label for="edit-auteur">Auteur</label>
+          <input type="text" id="edit-auteur" name="edit-auteur" required />
+          <label for="edit-annee">Année</label>
+          <input type="date" id="edit-date" name="edit-date" required />
+          <label for="edit-genre">Genre</label>
+          <input type="text" id="edit-genre" name="edit-genre" required />
+
+          <div class="edit-modal-actions">
+            <button id="cancel-edit" class="cancel-btn">Annuler</button>
+            <button id="confirm-edit" class="confirm-edit-btn">Modifier</button>
+          </div>
+        </div>
+      </div>
+      <!-- Popup de confirmation de suppression -->
+      <div class="delete-modal" id="delete-modal">
+        <div class="delete-modal-content">
+          <h3>
+            Êtes-vous sûr de vouloir supprimer ce livre de la bibliothèque ?
+          </h3>
+          <div class="delete-modal-actions">
+            <button id="cancel-delete" class="cancel-btn">Annuler</button>
+            <button id="confirm-delete" class="confirm-btn">Supprimer</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Formulaire d'ajout -->
+      <div id="formAdd" class="form">
+        <h2>Ajouter un livre</h2>
+        <label for="titre">Titre</label>
+        <input type="text" id="titre" name="titre" required />
+        <label for="auteur">Auteur</label>
+        <input type="text" id="auteur" name="auteur" required />
+        <label for="date">Année</label>
+        <input type="date" id="date" name="date" required />
+        <label for="genre">Genre</label>
+        <input type="text" id="genre" name="genre" required />
+        <button id="submit-btn" type="submit">Ajouter</button>
+      </div>
+
+      <!-- Liste des livres -->
+      <h2>Liste des livres</h2>
+      <table id="books">
+        <thead>
+          <tr>
+            <th>Titre</th>
+            <th>Auteur</th>
+            <th>date</th>
+            <th>Genre</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </main>
+  </body>
 </html>

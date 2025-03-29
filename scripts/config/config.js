@@ -1,7 +1,7 @@
 /* 
-    Auteur: Philppe Galley
-    Date: 10.03.2025
-    Description: Configuration de l'application.
+    Auteur: Léonard Wicki
+    Date: 29.3.2025
+    Description: Service pour la gestion des livres.
 */
 
 // Endpoint de l'API REST.
