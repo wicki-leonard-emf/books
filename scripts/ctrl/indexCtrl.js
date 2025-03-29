@@ -81,38 +81,66 @@ export class IndexCtrl {
 			alert("Une erreur est survenue lors de l'ajout du livre.");
 		}
 	}
+	async supprimerLivre(id) {
+		try {
+			await this.#service.supprimerLivre(id);  // Méthode à implémenter dans IndexService
+			this.initializeData();
+			alert("Livre supprimé avec succès.");
+		} catch (error) {
+			console.error("Erreur lors de la suppression du livre :", error);
+			alert("Une erreur est survenue lors de la suppression du livre.");
+		}
+	}	
 	
 	
 	
 	afficherResultat(data) {
-		// Récupération du tableau.
 		const tbody = document.querySelector("#books tbody");
-		// Réinitialisation du tableau.
 		tbody.innerHTML = "";
-		// Parcours des données.
+	
 		data.forEach((book) => {
-			// Création d'une ligne.
 			const tr = document.createElement("tr");
-			// Création des cellules.
+	
 			const titre = document.createElement("td");
 			titre.innerText = book.titre;
+	
 			const auteur = document.createElement("td");
 			auteur.innerText = book.auteur;
+	
 			const date = document.createElement("td");
 			const dateObj = new Date(book.date * 1000);
 			date.textContent = dateObj.toLocaleDateString('fr-FR');
+	
 			const genre = document.createElement("td");
 			genre.innerText = book.genre;
-
-			// Ajout des cellules à la ligne.
+	
+			// Création correcte du bouton suppression
+			const deleteBtnTd = document.createElement("td");
+			const deleteBtn = document.createElement("button");
+			deleteBtn.classList.add("delete-btn");
+			deleteBtn.innerHTML = `
+				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+					<path d="M3 6h18v2H3z"/>
+					<path d="M8 9h2v9H8zM14 9h2v9h-2z"/>
+					<path d="M5 6l1 14h12l1-14"/>
+					<path d="M9 4h6v2H9z"/>
+				</svg>`;
+			
+			deleteBtn.addEventListener("click", () => {
+				this.supprimerLivre(book.id);
+			});
+			
+			deleteBtnTd.appendChild(deleteBtn);
+	
 			tr.appendChild(titre);
 			tr.appendChild(auteur);
 			tr.appendChild(date);
 			tr.appendChild(genre);
-
-			// Ajout de la ligne au tableau.
+			tr.appendChild(deleteBtnTd);
+	
 			tbody.appendChild(tr);
 		});
 	}
+	
 
 }

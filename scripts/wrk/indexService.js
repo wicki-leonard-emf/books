@@ -16,18 +16,6 @@ export class IndexService {
      * Méthode pour récupérer les livres via Fetch avec les méthodes then/catch.
      * @returns {Promise} Une promesse avec les données des livres.
      */
-    getbooks() {
-        return fetch(API_ENDPOINT + "livres")
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-                return data;
-            })
-            .catch((error) => {
-                console.error(error);
-                throw error;
-            });
-    }
 
     async fetchAllData() {
         try {
@@ -73,5 +61,15 @@ export class IndexService {
             throw error;
         }
     }
+
+    async supprimerLivre(id) {
+        const response = await fetch(API_ENDPOINT + `/livres/${id}`, {
+                method: 'DELETE',
+            });
+            if (!response.ok) {
+                throw new Error(`Erreur HTTP! statut: ${response.status}`);
+            }
+        }
+    
     
 }    
