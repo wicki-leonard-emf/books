@@ -16,48 +16,24 @@ export class IndexService {
    * Méthode pour récupérer les livres via Fetch avec les méthodes then/catch.
    * @returns {Promise} Une promesse avec les données des livres.
    */
-
   async fetchAllData() {
-    try {
-      const response = await fetch(API_ENDPOINT + "livres");
-
-      if (!response.ok) {
-        throw new Error(`Erreur HTTP: ${response.status}`);
-      }
-
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error("Erreur lors de la récupération des données:", error);
-      throw error;
+    const response = await fetch(`${API_ENDPOINT}/livres`);
+    if (!response.ok) {
+      throw new Error("Erreur lors de la récupération des données");
     }
+    return response.json();
   }
 
   async ajouterLivre(titre, auteur, date, genre) {
-    const livre = { titre, auteur, date, genre };
-
-    try {
-      const response = await fetch(API_ENDPOINT + "livres", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(livre),
-      });
-
-      // Vérification du succès de la réponse
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error("Corps de la réponse:", errorText);
-        throw new Error(`Erreur HTTP: ${response.status}`);
-      }
-
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error("Erreur lors de l'ajout du livre:", error);
-      throw error;
+    const response = await fetch(`${API_ENDPOINT}/livres`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ titre, auteur, date, genre })
+    });
+    if (!response.ok) {
+      throw new Error("Erreur lors de l'ajout du livre");
     }
+    return response.json();
   }
 
   /**
@@ -66,22 +42,13 @@ export class IndexService {
    * @returns {Promise} - Une promesse qui résout si la suppression est réussie
    */
   async supprimerLivre(id) {
-    try {
-      const response = await fetch(`${API_ENDPOINT}livres/${id}`, {
-        method: "DELETE",
-      });
-
-      if (!response.ok) {
-        throw new Error(`Erreur HTTP: ${response.status}`);
-      }
-
-      return await response.json();
-    } catch (error) {
-      console.error("Erreur lors de la suppression du livre:", error);
-      throw error;
+    const response = await fetch(`${API_ENDPOINT}/livres/${id}`, {
+      method: "DELETE"
+    });
+    if (!response.ok) {
+      throw new Error("Erreur lors de la suppression du livre");
     }
   }
-
   async getLivreById(id) {
     try {
       const response = await fetch(`${API_ENDPOINT}livres/${id}`);
@@ -149,3 +116,4 @@ export class IndexService {
     }
   }
 }
+
