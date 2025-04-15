@@ -5,7 +5,7 @@
 */
 
 // Importation des services.
-import { IndexService } from "../wrk/indexService.js";
+import { IndexService } from "../services/indexService.js";
 
 /**
  * Contrôleur de la page index.html
